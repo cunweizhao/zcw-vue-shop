@@ -7,11 +7,23 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+//import axios from 'axios'
+import jsonp from 'jsonp'
 
 export default {
   name: 'App',
   components: {
     HelloWorld
+  },
+  mounted(){
+    let url ="www.baidu.com"
+    // axios.get(url).then(() =>{
+    //
+    // })
+    jsonp(url,(err,res)=>{
+      let result =res;
+      this.data = result;
+    })
   }
 }
 </script>
