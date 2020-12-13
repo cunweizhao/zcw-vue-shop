@@ -36,6 +36,9 @@ export default{
     clear(key,module_name){
       let val = this.getStorage();
       if(module_name){
+          if(!val[module_name]){
+              return;
+          }
           delete val[module_name][key];
           // eslint-disable-next-line no-empty
       }else{
