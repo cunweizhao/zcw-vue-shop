@@ -6,16 +6,19 @@
 
 <script>
 //import axios from 'axios'
-import storage from './storage/index'
+//import storage from './storage/index'
 export default {
   name: 'App',
   data(){
     return{
-
+    res:{}
     }
   },
   mounted(){
-    storage.setItem('a',1);
+    //storage.setItem('a',1);
+    this.axios.get('/mock/user/login.json').then((res)=>{
+       this.res = res;
+    })
   }
 }
 </script>
