@@ -26,7 +26,64 @@
         <div class="header-menu">
           <div class="item-menu">
             <span>小米手机</span>
-            <div class="children"></div>
+            <div class="children">
+              <ul>
+                <li class="product">
+                  <a href="" target="_blank">
+                    <div class="pro-img">
+                      <img src="https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1597145851.48099727.jpg" alt=""/>
+                    </div>
+                    <div class="pro-name">小米CC9</div>
+                    <div class="pro-price">1799￥</div>
+                  </a>
+                </li>
+                <li class="product">
+                  <a href="" target="_blank">
+                    <div class="pro-img">
+                      <img src="https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1597145851.48099727.jpg" alt=""/>
+                    </div>
+                    <div class="pro-name">小米CC9</div>
+                    <div class="pro-price">1799￥</div>
+                  </a>
+                </li>
+                <li class="product">
+                  <a href="" target="_blank">
+                    <div class="pro-img">
+                      <img src="https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1597145851.48099727.jpg" alt=""/>
+                    </div>
+                    <div class="pro-name">小米CC9</div>
+                    <div class="pro-price">1799￥</div>
+                  </a>
+                </li>
+                <li class="product">
+                  <a href="" target="_blank">
+                    <div class="pro-img">
+                      <img src="https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1597145851.48099727.jpg" alt=""/>
+                    </div>
+                    <div class="pro-name">小米CC9</div>
+                    <div class="pro-price">1799￥</div>
+                  </a>
+                </li>
+                <li class="product">
+                  <a href="" target="_blank">
+                    <div class="pro-img">
+                      <img src="https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1597145851.48099727.jpg" alt=""/>
+                    </div>
+                    <div class="pro-name">小米CC9</div>
+                    <div class="pro-price">1799￥</div>
+                  </a>
+                </li>
+                <li class="product">
+                  <a href="" target="_blank">
+                    <div class="pro-img">
+                      <img src="https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1597145851.48099727.jpg" alt=""/>
+                    </div>
+                    <div class="pro-name">小米CC9</div>
+                    <div class="pro-price">1799￥</div>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
           <div class="item-menu">
             <span>ReadMi红米</span>
@@ -34,7 +91,64 @@
           </div>
           <div class="item-menu">
             <span>电视</span>
-            <div class="children"></div>
+            <div class="children">
+              <ul>
+                <li class="product">
+                  <a href="" target="_blank">
+                    <div class="pro-img">
+                      <img src="/imgs/nav-img/nav-3-1.jpg" alt=""/>
+                    </div>
+                    <div class="pro-name">小米CC9</div>
+                    <div class="pro-price">1799￥</div>
+                  </a>
+                </li>
+                <li class="product">
+                  <a href="" target="_blank">
+                    <div class="pro-img">
+                      <img src="/imgs/nav-img/nav-3-1.jpg" alt=""/>
+                    </div>
+                    <div class="pro-name">小米CC9</div>
+                    <div class="pro-price">1799￥</div>
+                  </a>
+                </li>
+                <li class="product">
+                  <a href="" target="_blank">
+                    <div class="pro-img">
+                      <img src="/imgs/nav-img/nav-3-1.jpg" alt=""/>
+                    </div>
+                    <div class="pro-name">小米CC9</div>
+                    <div class="pro-price">1799￥</div>
+                  </a>
+                </li>
+                <li class="product">
+                  <a href="" target="_blank">
+                    <div class="pro-img">
+                      <img src="https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1597145851.48099727.jpg" alt=""/>
+                    </div>
+                    <div class="pro-name">小米CC9</div>
+                    <div class="pro-price">1799￥</div>
+                  </a>
+                </li>
+                <li class="product">
+                  <a href="" target="_blank">
+                    <div class="pro-img">
+                      <img src="https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1597145851.48099727.jpg" alt=""/>
+                    </div>
+                    <div class="pro-name">小米CC9</div>
+                    <div class="pro-price">1799￥</div>
+                  </a>
+                </li>
+                <li class="product">
+                  <a href="" target="_blank">
+                    <div class="pro-img">
+                      <img src="https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1597145851.48099727.jpg" alt=""/>
+                    </div>
+                    <div class="pro-name">小米CC9</div>
+                    <div class="pro-price">1799￥</div>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="header-search">
@@ -55,6 +169,7 @@
 <style lang="scss">
   @import './../assets/scss/base.scss';
   @import './../assets/scss/mixin.scss';
+  @import './../assets/scss/config.scss';
   .header{
     .nav-topbar{
       height:39px;
@@ -82,6 +197,7 @@
     }
     .nav-header{
       .container{
+        position:relative;
         height:112px;
          @include flex();
         .header-logo{
@@ -127,7 +243,71 @@
           }
 
           &:hover {
-
+            color: $colorA;
+            .children{
+              height: 220px;
+              /*添加动画效果*/
+              opacity: 1;
+            }
+          }
+          .children{
+            position:absolute;
+            top:112px;
+            left: 0;
+            width: 1226px;
+            height: 220px;
+            opacity: 0;
+            /*隐藏*/
+            overflow: hidden;
+            border-top: 1px; solid: #5555;
+            box-shadow: 0px 7px 6px 0px rgba(0,0,0,0.11);
+            z-index: 10;
+            /*添加动画：控制某个属性进行*/
+            transition: height .5s;
+            .product{
+              /*防止决定定位跑，*/
+              position:relative;
+              float:left;
+              width: 16.6%;
+              height: 220px;
+              font-size: 12px;
+              line-height: 12px;
+              text-align: center;
+              a{
+                display: inline-block;
+              }
+              img{
+                width: auto;
+                height: 111px;
+                margin-top: 26px;
+              }
+              .pro-img{
+                height: 137px;
+              }
+              .pro-name{
+                font-weight: bold;
+                margin-top: 19px;
+                margin-bottom: 8px;
+                color: $colorB;
+              }
+              .pro-price{
+                color: $colorA;
+              }
+              /*添加伪类*/
+              &:before{
+                content: '';
+                position:absolute;
+                top: 28px;
+                right: 0;
+                border-left: 1px solid $colorF;
+                height: 100px;
+                width: 1px;
+              }
+              /*去掉最后一个元素*/
+              &:last-child:before{
+                display: none;
+              }
+            }
           }
         }
         .header-search{
