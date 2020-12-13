@@ -6,7 +6,7 @@
 
 <script>
 //import axios from 'axios'
-
+import storage from './storage/index'
 export default {
   name: 'App',
   data(){
@@ -15,6 +15,7 @@ export default {
     }
   },
   mounted(){
+    storage.setItem('a',1);
   }
 }
 </script>
