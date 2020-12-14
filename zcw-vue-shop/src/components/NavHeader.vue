@@ -11,10 +11,11 @@
           <a href="javascript:;">云服务</a>
           <a href="javascript:;">协议规则</a>
         </div>
-        <div class="nav-header">
-          <a href="javascript:;">登录</a>
-          <a href="javascript:;">注册</a>
-          <a href="javascript:;" class="my-cart"><span class="icon-cart"></span>购物车</a>
+        <div class="topbar-user">
+          <a href="javascript:;" v-if="username">{{username}}</a>
+          <a href="javascript:;" v-if="!username" @click="login">登录</a>
+          <a href="javascript:;" v-if="username">我的订单</a>
+          <a href="javascript:;" class="my-cart" @click="goToCart"><span class="icon-cart"></span>购物车</a>
         </div>
       </div>
     </div>
@@ -28,58 +29,13 @@
             <span>小米手机</span>
             <div class="children">
               <ul>
-                <li class="product">
-                  <a href="" target="_blank">
+                <li class="product" v-for="(item,index) in phoneList" :key="index">
+                  <a v-bind:href="'/#/product/'+item.id" target="_blank">
                     <div class="pro-img">
-                      <img src="https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1597145851.48099727.jpg" alt=""/>
+                      <img :src="item.mainImage" :alt="item.subtitle"/>
                     </div>
-                    <div class="pro-name">小米CC9</div>
-                    <div class="pro-price">1799￥</div>
-                  </a>
-                </li>
-                <li class="product">
-                  <a href="" target="_blank">
-                    <div class="pro-img">
-                      <img src="https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1597145851.48099727.jpg" alt=""/>
-                    </div>
-                    <div class="pro-name">小米CC9</div>
-                    <div class="pro-price">1799￥</div>
-                  </a>
-                </li>
-                <li class="product">
-                  <a href="" target="_blank">
-                    <div class="pro-img">
-                      <img src="https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1597145851.48099727.jpg" alt=""/>
-                    </div>
-                    <div class="pro-name">小米CC9</div>
-                    <div class="pro-price">1799￥</div>
-                  </a>
-                </li>
-                <li class="product">
-                  <a href="" target="_blank">
-                    <div class="pro-img">
-                      <img src="https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1597145851.48099727.jpg" alt=""/>
-                    </div>
-                    <div class="pro-name">小米CC9</div>
-                    <div class="pro-price">1799￥</div>
-                  </a>
-                </li>
-                <li class="product">
-                  <a href="" target="_blank">
-                    <div class="pro-img">
-                      <img src="https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1597145851.48099727.jpg" alt=""/>
-                    </div>
-                    <div class="pro-name">小米CC9</div>
-                    <div class="pro-price">1799￥</div>
-                  </a>
-                </li>
-                <li class="product">
-                  <a href="" target="_blank">
-                    <div class="pro-img">
-                      <img src="https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1597145851.48099727.jpg" alt=""/>
-                    </div>
-                    <div class="pro-name">小米CC9</div>
-                    <div class="pro-price">1799￥</div>
+                    <div class="pro-name">{{ item.name }}</div>
+                    <div class="pro-price">{{ item.price | currency}}</div>
                   </a>
                 </li>
               </ul>
@@ -123,7 +79,7 @@
                 <li class="product">
                   <a href="" target="_blank">
                     <div class="pro-img">
-                      <img src="https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1597145851.48099727.jpg" alt=""/>
+                      <img src="/imgs/nav-img/nav-3-1.jpg" alt=""/>
                     </div>
                     <div class="pro-name">小米CC9</div>
                     <div class="pro-price">1799￥</div>
@@ -132,7 +88,7 @@
                 <li class="product">
                   <a href="" target="_blank">
                     <div class="pro-img">
-                      <img src="https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1597145851.48099727.jpg" alt=""/>
+                      <img src="/imgs/nav-img/nav-3-1.jpg" alt=""/>
                     </div>
                     <div class="pro-name">小米CC9</div>
                     <div class="pro-price">1799￥</div>
@@ -141,7 +97,7 @@
                 <li class="product">
                   <a href="" target="_blank">
                     <div class="pro-img">
-                      <img src="https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1597145851.48099727.jpg" alt=""/>
+                      <img src="/imgs/nav-img/nav-3-1.jpg" alt=""/>
                     </div>
                     <div class="pro-name">小米CC9</div>
                     <div class="pro-price">1799￥</div>
@@ -163,7 +119,48 @@
 </template>
 <script>
   export default {
-    name: 'nav-header'
+    name: 'nav-header',
+    data(){
+      return{
+        username:'',
+        phoneList:[]
+      }
+    },
+    filters:{
+      currency(val){
+        if(!val){
+          return '0.00';
+        }else{
+          return '￥' +val.toFixed(2)+ '元';
+        }
+      }
+    },
+    mounted(){
+      this.getProductList();
+    },
+    methods:{
+      login(){
+        this.$router.push('/login');
+      },
+      getProductList(){
+        this.axios.get('/products',{
+          params:{
+            categoryId:'100012',
+            //pageSize:6
+          }
+        }).then((res) =>{
+          //res.list;
+         //数组截取
+          if(res.list.length>6){
+            this.phoneList = res.list.slice(0,6);
+          }
+        })
+      },
+      goToCart(){
+        /*路由跳转*/
+        this.$router.push('/cart');
+      }
+    }
   }
 </script>
 <style lang="scss">
