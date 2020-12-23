@@ -83,14 +83,14 @@
           <div class="list-box">
             <div class="list" v-for="(arr,i)  in phoneList" v-bind:key ="i">
               <div class="item" v-for="(item,j) in arr" v-bind:key="j">
-                <span>新品</span>
+                <span v-bind:class="{'new-pro':j%2==0}">新品</span>
                 <div class="item-img">
-                  <img src="" alt="">
+                  <img v-bind:src="item.mainImage" alt="">
                 </div>
                 <div class="item-info">
-                  <h3>小米9</h3>
-                  <p>骁龙85，索尼4800万超广角微距</p>
-                  <p class="price">2999元</p>
+                  <h3>{{item.name}}</h3>
+                  <p>{{ item.subtitle }}</p>
+                  <p class="price">{{ item.price }}</p>
                 </div>
               </div>
             </div>
@@ -99,18 +99,29 @@
       </div>
     </div>
     <ServiceBar></ServiceBar>
+    <Modal
+        title="提示"
+        sureText="查看购物车"
+        btnType="1"
+        modalType="middle" v-bind:showModal="true">
+        <template v-slot:body>
+          <p>商品添加成功！</p>
+        </template>
+    </Modal>
   </div>
 </template>
 <script>
 import ServiceBar from './../components/ServiceBar'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
+import Modal from './../components/Modal'
 export default {
   name:'index',
   components:{
     swiper,
     swiperSlide,
-    ServiceBar
+    ServiceBar,
+    Modal
   },
   data(){
     return {
@@ -210,6 +221,23 @@ export default {
       ],
       phoneList:[[1,1,1,1],[1,1,1,1]]
     }
+  },
+  mounted(){
+    this.init();
+  },
+  methods:{
+      init(){
+        this.axios.get('/products',{
+          params:{
+            categoryId:100012,
+            pageSize:8
+          }
+        }).then((res) =>{
+          res.list = res.list.slice(7,14);
+          this.phoneList = [res.list.slice(0,4),
+          res.list.slice(4,8)];
+        })
+      }
   }
 }
 </script>
@@ -344,7 +372,18 @@ export default {
             background-color: $colorG;
             text-align: center;
             span{
-
+              display:inline-block;
+              width:67px;
+              height: 24px;
+              font-size: 14px;
+              line-height: 24px;
+              color: $colorG;
+              &.new-pro{
+                background-color: #7ECF68;
+              }
+              &.kill-pro{
+                background-color:#E82626;
+              }
             }
             .item-img{
               img{
