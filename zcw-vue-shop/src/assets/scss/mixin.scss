@@ -19,7 +19,7 @@
   width:$w;
   height:$h;
 }
-@mixin positionImg($pos:absolute,$top:0,$right:0,$w:0,$h:0,$img){
+@mixin positionImg($pos:absolute,$top:0,$right:0,$w:0,$h:0,$img: ''){
   position:$pos;
   top:$top;
   right: $right;
