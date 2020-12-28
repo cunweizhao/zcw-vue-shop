@@ -61,7 +61,7 @@
 <!--  广告位    -->
       <div class="ads-box">
         <a v-bind:href="'/#/product/'+item.id" v-for="(item, index) in adsList" v-bind:key="index">
-          <img v-bind:src="item.img" alt="">
+          <img v-lazy="item.img" alt="">
         </a>
       </div>
       <div class="banner">
