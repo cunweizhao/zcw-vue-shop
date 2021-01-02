@@ -3,6 +3,7 @@ import router from "@/router"
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueLazyLoad from 'vue-lazyload'
+import store from './store'
 //import env from './env'
 import App from './App.vue'
 
@@ -40,6 +41,7 @@ Vue.use(VueLazyLoad,{
 Vue.config.productionTip = false
 
 new Vue({
+  store,
   //初始化路由
   router,
   render: h => h(App),
