@@ -15,10 +15,20 @@ export default {
     }
   },
   mounted(){
-    //storage.setItem('a',1);
-    this.axios.get('/mock/user/login.json').then((res)=>{
-       this.res = res;
-    })
+   if(this.$cookie.get('userId')){
+     this.getUser();
+     this.getCartCount();
+   }
+  },
+  methods: {
+    getUser(){
+      this.axios.get('/user').then(() =>{
+          // to-do 保存到vuex里面
+      })
+    },
+    getCartCount(){
+        this.axios.get('/carts/products/sum').then(() =>{})
+    }
   }
 }
 </script>

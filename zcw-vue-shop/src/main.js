@@ -25,7 +25,9 @@ axios.interceptors.response.use(function(response){
     return res.data;
     // eslint-disable-next-line no-empty
   }else if(res.status== 10){
-    window.location.href ='/#/login';//hash路由，
+    if( path !='#/index'){
+      window.location.href ='/#/login';//hash路由，
+    }
   }else{
     alert(res.msg);
   }
