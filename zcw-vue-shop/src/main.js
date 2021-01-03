@@ -2,7 +2,10 @@ import Vue from 'vue'
 import router from "@/router"
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import VueCookie from 'vue-cookie'
 import VueLazyLoad from 'vue-lazyload'
+import { Message } from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 import store from './store'
 //import env from './env'
 import App from './App.vue'
@@ -30,14 +33,18 @@ axios.interceptors.response.use(function(response){
       window.location.href ='/#/login';//hash路由，
     }
   }else{
-    alert(res.msg);
+    // alert(res.msg);
+    Message.error(res.msg);
+    return Promise.reject(res);
   }
 });
 Vue.use(VueAxios,axios)
+Vue.use(VueCookie);
+Vue.use(Message)
 Vue.use(VueLazyLoad,{
   loading: ''
 })
-
+Vue.prototype.$message=Message;
 Vue.config.productionTip = false
 
 new Vue({
